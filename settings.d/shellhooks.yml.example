@@ -1,0 +1,3 @@
+---
+:enabled: true
+:directory: /var/lib/foreman/shellhooks

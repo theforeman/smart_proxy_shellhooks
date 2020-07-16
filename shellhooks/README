@@ -1,0 +1,7 @@
+Foreman Shell Hooks
+~~~~~~~~~~~~~~~~~~~
+
+WARNING: Files in this directory can be executer remotely via HTTP(s) service.
+Make sure to sanitize standard input to prevent escaping into shell!
+
+TODO
