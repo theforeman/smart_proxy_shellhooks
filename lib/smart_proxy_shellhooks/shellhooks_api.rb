@@ -22,6 +22,24 @@ module Proxy::ShellHooks
       {valid: executable, invalid: other}.to_json
     end
 
+    post '/:name' do
+      name = params['name']
+      log_halt(500, "Not a valid shellhook name") if name !~ VALID_SHELL
+      file = File.join(Plugin.settings.directory, name)
+      log_halt(500, "Not a valid shellhook file") unless valid_shell?(file)
+      cmd = [file]
+      (1..99).each_with_index do |i|
+        arg_name = "HTTP_X_SHELLHOOK_ARG_#{i}"
+        if request.env[arg_name]
+          cmd << request.env[arg_name]
+        else
+          break
+        end
+      end
+      request.body.rewind
+      Proxy::Util::CommandTask.new(cmd, request.body.read).start
+    end
+
     private
 
     def valid_shell?(file)

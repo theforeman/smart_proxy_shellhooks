@@ -4,4 +4,6 @@
 # ( o.o )
 #  > ^ <
 #
+# Prints STDIN to STDOUT...
+#
 cat
