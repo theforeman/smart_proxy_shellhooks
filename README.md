@@ -65,6 +65,6 @@ This can be useful for passing database ID or other simple fields so standard JS
 * The script is executed asynchronously in a Ruby (green) thread, no return payload possible.
 * The return (exit) value is only logged into the smart-proxy logger.
 * Optionally HTTP headers X-Shellhook-Arg-1 to N are passed as arguments.
-* HTTP return code is 200 for success (with no output) and non-200 for errors.
+* HTTP return code is 200 when script was executed (not output) or non-200 when the plugin failed (not script).
 * Keep in mind all the input is usafe, clean every individual data element or argument to prevent security vulnerability.
-* Example templates are shipped with foreman_webhooks plugin.
+* Example templates are shipped with foreman_webhooks plugin and few scripts with this plugin.
