@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Requires "tower-cli" to be installed and configured. Payload (body)
+# is ignored. HTTP parameters recognized:
+#
+# X-Shellhook-Arg-1: [create|delete]
+# X-Shellhook-Arg-2: hostname
+# X-Shellhook-Arg-3: inventory name
+#
+CLI=tower-cli
+
+usage() {
+  echo "Usage: $0 'create|delete' 'hostname' 'Demo Inventory'"
+}
+
+if [ "$#" -ne 3 ]; then
+  usage
+  exit 1
+fi
+
+if [ "$1" == "create" ]; then
+  $CLI host create -n "$2" -i "$3"
+elif [ "$1" == "delete" ]; then
+  ID=$($CLI host get -n "$2" -f yaml | grep ^id: | awk '{print $2}')
+  $CLI host delete "$ID"
+else
+  usage
+  exit 1
+fi
