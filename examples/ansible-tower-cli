@@ -6,8 +6,17 @@
 # X-Shellhook-Arg-1: [create|delete]
 # X-Shellhook-Arg-2: hostname
 # X-Shellhook-Arg-3: inventory name
-#
+
+# path to tower-cli binary and authentication variables
 CLI=tower-cli
+#export TOWER_OAUTH_TOKEN=6E5SXhld7AMOhpRveZsLJQsfs9VS8U
+#export TOWER_USERNAME=alice
+#export TOWER_PASSWORD=secret
+
+# strip non-alphanum characters to prevent shell escape attempts
+ACTION=${1//[^[:alnum:]._-]/}
+HOSTNAME=${2//[^[:alnum:]._-]/}
+INVENTORY=${3//[^[:alnum:]._-]/}
 
 usage() {
   echo "Usage: $0 'create|delete' 'hostname' 'Demo Inventory'"
@@ -18,10 +27,10 @@ if [ "$#" -ne 3 ]; then
   exit 1
 fi
 
-if [ "$1" == "create" ]; then
-  $CLI host create -n "$2" -i "$3"
-elif [ "$1" == "delete" ]; then
-  ID=$($CLI host get -n "$2" -f yaml | grep ^id: | awk '{print $2}')
+if [ "$ACTION" == "create" ]; then
+  $CLI host create -n "$HOSTNAME" -i "$INVENTORY"
+elif [ "$ACTION" == "delete" ]; then
+  ID=$($CLI host get -n "$HOSTNAME" -f yaml | grep ^id: | awk '{print $2}')
   $CLI host delete "$ID"
 else
   usage
