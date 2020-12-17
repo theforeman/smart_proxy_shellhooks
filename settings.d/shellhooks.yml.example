@@ -1,3 +1,5 @@
 ---
-:enabled: true
+# always enable HTTPS only
+:enabled: https
+# directory with executables
 :directory: /var/lib/foreman/shellhooks
