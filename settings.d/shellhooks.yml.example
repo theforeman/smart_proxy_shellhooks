@@ -3,4 +3,4 @@
 #:enabled: https
 :enabled: false
 # directory with executables
-:directory: /var/lib/foreman/shellhooks
+:directory: /var/lib/foreman-proxy/shellhooks
