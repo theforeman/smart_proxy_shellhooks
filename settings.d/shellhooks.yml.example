@@ -1,5 +1,6 @@
 ---
-# always enable HTTPS only
+# Use of HTTPS only is strongly advised. Exposing shellhooks over http is
+# technically possible but allows anyone to run things on your proxy.
 #:enabled: https
 :enabled: false
 # directory with executables
