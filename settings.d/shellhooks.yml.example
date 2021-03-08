@@ -1,6 +1,6 @@
 ---
-# always enable HTTPS only
-#:enabled: https
+# plugin only listens on https (http or both values will be ignored)
 :enabled: false
+
 # directory with executables
 :directory: /var/lib/foreman-proxy/shellhooks
