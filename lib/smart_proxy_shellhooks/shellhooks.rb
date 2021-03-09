@@ -6,7 +6,6 @@ module Proxy::ShellHooks
 
     default_settings :directory => '/var/lib/foreman/shellhooks'
 
-    http_rackup_path File.expand_path('shellhooks_http_config.ru', File.expand_path('../', __FILE__))
-    https_rackup_path File.expand_path('shellhooks_http_config.ru', File.expand_path('../', __FILE__))
+    rackup_path File.expand_path('shellhooks_http_config.ru', __dir__)
   end
 end
