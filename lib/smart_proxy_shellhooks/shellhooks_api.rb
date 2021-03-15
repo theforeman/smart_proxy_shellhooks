@@ -8,6 +8,9 @@ module Proxy::ShellHooks
     include ::Proxy::Log
     helpers ::Proxy::Helpers
 
+    authorize_with_ssl_client
+    authorize_with_trusted_hosts
+
     get '/' do
       executable = []
       other = []
