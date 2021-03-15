@@ -1,6 +1,6 @@
 ---
-# always enable HTTPS only
-#:enabled: https
+# Use https for production deployments. http and true only make sense in development
 :enabled: false
-# directory with executables
+
+# Directory with executables.
 :directory: /var/lib/foreman-proxy/shellhooks
