@@ -1,16 +1,16 @@
 # Smart Proxy Shell Hooks
 
-Provides an endpoint for foreman_webhooks plugin executing binaries (shell scripts, python scripts, anything). Remember CGI? :-)
+Provides an endpoint for foreman_webhooks plugin executing binaries (shell scripts, python scripts, anything).
 
 ## Installation
 
-Install the plugin using the foreman-installer. Never enable this service via HTTP endpoint, only HTTPS with authentication using client certificate should be used.
+Install the plugin using the foreman-installer. Never enable this service via HTTP endpoint, only HTTPS with authentication using client certificate and with trusted hosts should be used.
 
-Open up `/var/lib/foreman/shellhooks` to see some examples, these are harmless stubs that does nothing.
+Open up `/var/lib/foreman-proxy/shellhooks` to see some examples, these are harmless stubs that do nothing as a starting point.
 
 ## Writing scripts
 
-Script must be placed in `/var/lib/foreman/shellhooks` having a name consisting of alphanums, dash or underscore. The file must be executable. To see list of availble and valid scripts matching the requirements, perform:
+Script must be placed in `/var/lib/foreman-proxy/shellhooks` having a name consisting of alphanums, dash or underscore. The file must be executable. To see list of availble and valid scripts matching the requirements, perform:
 
     $ curl -s https://localhost:9090/shellhook/ | jq
     {
@@ -34,7 +34,7 @@ To execute an example script which prints input back to output (smart-proxy log)
 
 To find out if the script was executed, open up smart-proxy log:
 
-    2020-08-27T12:23:37 eabe1a74 [I] Started POST /shellhook/print_body 
+    2020-08-27T12:23:37 eabe1a74 [I] Started POST /shellhook/print_body
     2020-08-27T12:23:37 eabe1a74 [D] Headers: {"HTTP_HOST"=>"localhost:9090", "HTTP_USER_AGENT"=>"curl/7.69.1", "HTTP_ACCEPT"=>"*/*", "HTTP_VERSION"=>"HTTP/1.1"}
     2020-08-27T12:23:37 eabe1a74 [D] Body: This is a test
     2020-08-27T12:23:37 eabe1a74 [I] Finished POST /shellhook/print_body with 200 (0.68 ms)
