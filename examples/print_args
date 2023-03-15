@@ -1,5 +1,5 @@
 #!/bin/sh
 #
-# Prints all arguments
+# Prints all arguments to stderr
 #
-echo "$@"
+echo "$@" >&2
